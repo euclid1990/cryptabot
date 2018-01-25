@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { compose } from 'recompose';
-import { withRouter } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import List from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
@@ -48,6 +46,54 @@ const styles = theme => ({
     },
   },
 });
+
+const pages = [
+  {
+    pathname: '/getting-started',
+    children: [
+      {
+        pathname: '/getting-started/installation',
+      },
+      {
+        pathname: '/getting-started/usage',
+      },
+      {
+        pathname: '/getting-started/supported-components',
+      },
+      {
+        pathname: '/getting-started/supported-platforms',
+      },
+      {
+        pathname: '/getting-started/example-projects',
+      },
+      {
+        pathname: '/getting-started/frequently-asked-questions',
+      },
+      {
+        pathname: '/getting-started/comparison',
+        title: 'Comparison With Other Libraries',
+      },
+    ],
+  },
+  {
+    pathname: '/style',
+    children: [
+      {
+        pathname: '/style/reboot',
+      },
+      {
+        pathname: '/style/color',
+      },
+      {
+        pathname: '/style/icons',
+      },
+      {
+        pathname: '/style/typography',
+      },
+    ],
+  },
+];
+
 
 class Sidebar extends Component {
 

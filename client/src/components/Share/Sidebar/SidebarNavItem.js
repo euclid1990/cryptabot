@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Link from '../Link/Link';
 import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';

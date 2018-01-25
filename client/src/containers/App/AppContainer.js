@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { createMuiTheme } from 'material-ui/styles';
@@ -66,6 +65,9 @@ const styles = theme => ({
       },
     },
   },
+  displayBlock: {
+    display: ['block', '!important'],
+  },
   root: {
     position: 'relative',
     display: 'flex',
@@ -116,7 +118,7 @@ const styles = theme => ({
 });
 
 const mapStateToProps = (state) => {
-  let sidebar = state.theme.sidebar;
+  let sidebar = state.layout.sidebar;
   return {
     uiTheme: theme,
     sidebar: Object.assign({}, sidebar, {width: sidebarWidth}),

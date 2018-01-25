@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import {
-  THEME_HEADER_SIZE, THEME_SIDEBAR_SIZE, THEME_SECTION_SIZE, THEME_FOOTER_SIZE,
   THEME_SIDEBAR_TOGGLE
 } from '../constants/themeActionTypes';
 
@@ -36,13 +35,11 @@ const footer = (state = {}, action) => {
   }
 }
 
-const theme = combineReducers({
+const layout = combineReducers({
   header,
   sidebar,
   section,
   footer
 })
 
-export {
-  theme
-};
+export default layout;

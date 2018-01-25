@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { theme } from './theme';
+import layout from './layout';
 
 const appReducer = combineReducers({
-  theme
+  layout
 });
 
 export default appReducer;

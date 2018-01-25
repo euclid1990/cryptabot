@@ -17,7 +17,7 @@ const styles = (theme) => (
     },
     rootWithoutSidebar: {
       flex: '1 0 100%',
-      maxWidth: '100%',
+      maxWidth: 1015,
       margin: '0 auto',
     }
   }
