@@ -61,7 +61,7 @@ class SidebarNavItem extends Component {
   };
 
   render() {
-    const { children, classes, href, openImmediately, title } = this.props;
+    const { children, classes, href, openImmediately, title, currentPathname } = this.props;
 
     if (href) {
       return (
@@ -69,6 +69,7 @@ class SidebarNavItem extends Component {
           <Button
             component={Link}
             variant="button"
+            currentPathname={currentPathname}
             href={href}
             activeClassName={classes.activeButton}
             className={classNames(classes.button, classes.navLinkButton)}

@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import NextLink from 'next/link';
+import { Link as ReactLink } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import { capitalizeFirstLetter } from 'material-ui/utils/helpers';
 
@@ -28,30 +27,7 @@ const styles = theme => ({
   },
 });
 
-class OnClick extends React.Component {
-  handleClick = event => {
-    if (this.props.onClick) {
-      this.props.onClick(event);
-    }
-
-    if (this.props.onCustomClick) {
-      this.props.onCustomClick(event);
-    }
-  };
-
-  render() {
-    const { component: ComponentProp, onCustomClick, ...props } = this.props;
-    return <ComponentProp {...props} onClick={this.handleClick} />;
-  }
-}
-
-OnClick.propTypes = {
-  component: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
-  onCustomClick: PropTypes.func,
-};
-
-function Link(props, context) {
+function Link(props) {
   const {
     activeClassName,
     children: childrenProp,
@@ -59,6 +35,7 @@ function Link(props, context) {
     classes,
     className: classNameProp,
     variant,
+    currentPathname,
     href,
     onClick,
     prefetch,
@@ -81,25 +58,15 @@ function Link(props, context) {
       className,
     };
   } else if (href) {
-    ComponentRoot = NextLink;
+    ComponentRoot = ReactLink;
+    const active = currentPathname === href;
     RootProps = {
-      href,
-      prefetch,
-      passHref: true,
+      to: href,
+      className: classNames(className, {
+        [activeClassName]: active && activeClassName,
+      }),
+      onClick: onClick,
     };
-    const active = context.url.pathname === href;
-    children = (
-      <OnClick
-        component="a"
-        className={classNames(className, {
-          [activeClassName]: active && activeClassName,
-        })}
-        onCustomClick={onClick}
-        {...other}
-      >
-        {children}
-      </OnClick>
-    );
   } else {
     ComponentRoot = 'a';
     RootProps = {

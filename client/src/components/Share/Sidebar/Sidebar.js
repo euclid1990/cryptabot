@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import { withRouter } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
-import List from 'material-ui/List';
 import Toolbar from 'material-ui/Toolbar';
 import Drawer from 'material-ui/Drawer';
 import Typography from 'material-ui/Typography';
@@ -9,8 +9,7 @@ import Divider from 'material-ui/Divider';
 import Hidden from 'material-ui/Hidden';
 import IconButton from 'material-ui/IconButton';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
-import SidebarNavItem from './SidebarNavItem';
-import Link from '../Link/Link';
+import SidebarNavList from './SidebarNavList';
 import './Sidebar.css'
 
 const sidebarWidth = 250;
@@ -92,6 +91,10 @@ const pages = [
       },
     ],
   },
+  {
+    pathname: '/',
+    title: false,
+  },
 ];
 
 
@@ -106,7 +109,7 @@ class Sidebar extends Component {
   };
 
   render() {
-    const { classes, sidebar, onClose, drawerClassName  } = this.props;
+    const { classes, sidebar, location, onClose, drawerClassName  } = this.props;
     const drawer = (
       <div className={classes.nav}>
         <div className={classes.toolbarIe11}>
@@ -127,9 +130,7 @@ class Sidebar extends Component {
             </div>
           </Hidden>
         </div>
-        <List>
-
-        </List>
+        <SidebarNavList pages={pages} location={location} onClose={onClose} />
       </div>
     );
     return (
@@ -170,4 +171,4 @@ class Sidebar extends Component {
   }
 }
 
-export default withStyles(styles)(Sidebar);
+export default withRouter(withStyles(styles)(Sidebar));
